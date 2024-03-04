@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ExpenseModule } from './expense/expense.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://niania:nia12345@cluster0.31mpgxd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     ExpenseModule
   ],
   controllers: [],
